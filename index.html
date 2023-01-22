@@ -1,14 +1,10 @@
 <script>
 	
   const bgColor = '#e585ca'
-  const gifURL = 'https://netart.rocks/images/butterfly.gif'
-  const gifWidth = 50
-  const gifHeight = 50
-  const gifOffsetX = 50
-  const gifOffsetY = 50
-  const numColumns = window.innerWidth / gifWidth
-  const numRows = (window.innerHeight / gifHeight) * 0.75
-  
+  const gifURL = 'https://media4.giphy.com/media/Vhhe0QjNRSq9Kt5KMw/giphy.gif?cid=790b7611f3a60c5a7c96b0da3ffd4514f8112ef355946d53&rid=giphy.gif&ct=s'
+  const gifOffsetX = 250
+  const gifOffsetY = 350
+ 
   function createGif (x, y) {
     // add image element to the page
     const gif = document.createElement('img')
@@ -23,13 +19,13 @@
   function setup () {
     document.body.style.backgroundColor = bgColor
     document.body.style.overflow = 'hidden'
-    for (let r = 0; r < numRows; r++) {
-      for (let c = 0; c < numColumns; c++) {
-        const x = c * gifWidth - gifOffsetX
-        const y = r * gifHeight - gifOffsetY
-        createGif(x, y)
-      }
-    }
+    const cx = window.innerWidth / 2 - gifOffsetX
+    const cy = window.innerHeight / 2 - gifOffsetY
+   	let theta = 0
+    const radius = 100 
+    const x = Math.sin(theta) * radius + cx
+    const y = Math.cos(theta) * radius + cy
+    createGif(x,y)
   }
     
   window.addEventListener('load', setup)
