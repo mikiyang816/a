@@ -1,11 +1,10 @@
 <script>
-	
-  const bgColor = '#e585ca'
+  const bgColor = 'red'
   const gifURL = 'https://media4.giphy.com/media/Vhhe0QjNRSq9Kt5KMw/giphy.gif?cid=790b7611f3a60c5a7c96b0da3ffd4514f8112ef355946d53&rid=giphy.gif&ct=s'
   const gifOffsetX = 250
   const gifOffsetY = 260
- 
-  function createGif (x, y) {
+
+  function createGif(x, y) {
     // add image element to the page
     const gif = document.createElement('img')
     gif.src = gifURL + '#' + Math.random()
@@ -15,26 +14,27 @@
     gif.style.left = x + 'px'
     gif.style.top = y + 'px'
   }
-  
-  function createGifCircle (num, scale, radius) {
+
+  function createGifCircle(num, scale, radius, n, k) {
     for (let i = 0; i < num; i++) {
-    	const cx = window.innerWidth / 2 - gifOffsetX
-    	const cy = window.innerHeight / 2 - gifOffsetY
-    	const x = Math.sin(i * scale) * radius + cx
-    	const y = Math.cos(i * scale) * radius + cy
-    	createGif(x, y)
+      const cx = window.innerWidth / n - gifOffsetX
+      const cy = window.innerHeight / k - gifOffsetY
+      const x = Math.sin(i * scale) * radius + cx
+      const y = Math.cos(i * scale) * radius + cy
+      createGif(x, y)
+    }
   }
-  }
-  
-  function setup () {
+
+  function setup() {
     document.body.style.backgroundColor = bgColor
     document.body.style.overflow = 'hidden'
-    createGifCircle(13, 0.5, 200)
-    setTimeout(createGifCircle,90000000, 13, 0.5, 150)
-    setTimeout(createGifCircle,190000000, 16, 0.9, 400)
-
+    createGifCircle(4, 0.5, 300, 1.5, 3)
   }
-    
-  window.addEventListener('load', setup)
   
+  function setup2() {
+    createGifCircle(4, 0.5, 200, 100, 100)
+  }
+
+  window.addEventListener('load', setup)
+  window.addEventListener('load', setup2)
 </script>
