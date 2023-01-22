@@ -3,7 +3,7 @@
   const bgColor = '#e585ca'
   const gifURL = 'https://media4.giphy.com/media/Vhhe0QjNRSq9Kt5KMw/giphy.gif?cid=790b7611f3a60c5a7c96b0da3ffd4514f8112ef355946d53&rid=giphy.gif&ct=s'
   const gifOffsetX = 250
-  const gifOffsetY = 350
+  const gifOffsetY = 260
  
   function createGif (x, y) {
     // add image element to the page
@@ -16,16 +16,21 @@
     gif.style.top = y + 'px'
   }
   
+  function createGifCircle (num, scale, radius) {
+    for (let i = 0; i < num; i++) {
+    	const cx = window.innerWidth / 2 - gifOffsetX
+    	const cy = window.innerHeight / 2 - gifOffsetY
+    	const x = Math.sin(i * scale) * radius + cx
+    	const y = Math.cos(i * scale) * radius + cy
+    	createGif(x, y)
+  }
+  }
+  
   function setup () {
     document.body.style.backgroundColor = bgColor
     document.body.style.overflow = 'hidden'
-    const cx = window.innerWidth / 2 - gifOffsetX
-    const cy = window.innerHeight / 2 - gifOffsetY
-   	let theta = 0
-    const radius = 100 
-    const x = Math.sin(theta) * radius + cx
-    const y = Math.cos(theta) * radius + cy
-    createGif(x,y)
+    createGifCircle(6, 0.5, 220)
+
   }
     
   window.addEventListener('load', setup)
